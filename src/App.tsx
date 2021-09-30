@@ -8,7 +8,7 @@ type AnswerObject = {
     answer: string;
     correct: boolean;
     correctAnswer: string;
-}
+};
 
 const TOTAL_QUESTIONS = 10;
 
@@ -21,6 +21,7 @@ const App = () => {
     const [userAnswers, setUserAnswers] = useState<AnswerObject[]>([]);
     const [score, setScore] = useState(0);
     const [gameOver, setGameOver] = useState(true);
+
 
     console.log(questions)
     const startTrivia = async () => {
@@ -39,11 +40,34 @@ const App = () => {
 
     const checkAnswer = (e: React.MouseEvent<HTMLButtonElement>) => {
 
+        if (!gameOver){
+            
+            const answer = e.currentTarget.value;
+            const correct = questions[number].correct_answer === answer;
+
+            if (correct) setScore(prev => prev + 1);
+
+            const answerObject = {
+                question: questions[number].question,
+                answer,
+                correct,
+                correctAnswer: questions[number].correct_answer,
+            };
+            setUserAnswers((prev) => [...prev, answerObject]);
+        }
+
     }
 
     const nextQuestion = () => {
+        // Move on to the next question if not the last question
+        const nextQ = number + 1;
 
-    }
+        if (nextQ === TOTAL_QUESTIONS) {
+            setGameOver(true);
+        } else {
+            setNumber(nextQ);
+        }
+    };
     return (
         <div className="App">
             <h1>REACT QUIZ</h1>
