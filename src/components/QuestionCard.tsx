@@ -5,10 +5,10 @@ type Props = {
     question: string;
     answers: string[];
     callback: any;
-    userAnswer: boolean;
+    userAnswer: any;
     questionNum: number;
     totalQuestions: number;
-}
+};
 const QuestionCard: React.FC<Props> = (
     {
         question,
