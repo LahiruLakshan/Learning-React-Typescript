@@ -9,7 +9,7 @@ type Props = {
     answers: string[];
     callback: (e: React.MouseEvent<HTMLButtonElement>) => void;
     userAnswer: AnswerObject | undefined;
-    questionNr: number;
+    questionNum: number;
     totalQuestions: number;
 };
 
@@ -18,12 +18,12 @@ const QuestionCard: React.FC<Props> = ({
                                            answers,
                                            callback,
                                            userAnswer,
-                                           questionNr,
+                                           questionNum,
                                            totalQuestions,
                                        }) => (
     <Wrapper>
         <p className='number'>
-            Question: {questionNr} / {totalQuestions}
+            Question: {questionNum} / {totalQuestions}
         </p>
         <p dangerouslySetInnerHTML={{__html: question}}/>
         <div>
